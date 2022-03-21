@@ -41,7 +41,7 @@ class _StateConnectionWidget extends State<_StateConnection> {
               width: double.infinity,
               alignment: Alignment.center,
               child: const Text(
-                'Sign in',
+                'Connexion',
                 style: TextStyle(
                     color: Colors.blue,
                     fontWeight: FontWeight.w500,
@@ -57,14 +57,14 @@ class _StateConnectionWidget extends State<_StateConnection> {
               child: TextFormField(
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Remplissez ce champ';
                   }
                   return null;
                 },
                 controller: nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Login',
                   hintText: ' Ex: admin',
                 ),
               ),
@@ -75,13 +75,13 @@ class _StateConnectionWidget extends State<_StateConnection> {
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
+                    return 'Remplissez ce champ';
                   }
                 },
                 controller: passwordController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText: 'Mot de passe',
                 ),
               ),
             ),
@@ -90,14 +90,14 @@ class _StateConnectionWidget extends State<_StateConnection> {
                 //forgot password screen
               },
               child: const Text(
-                'Forgot Password',
+                'Mot de passe oublié',
               ),
             ),
             Container(
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
-                child: const Text('Submit'),
+                child: const Text('Valider'),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     //passer dans le screen geolocalisation
@@ -109,10 +109,10 @@ class _StateConnectionWidget extends State<_StateConnection> {
             ),
             Row(
               children: <Widget>[
-                const Text('Does not have an account?'),
+                const Text("Pas de compte?"),
                 TextButton(
                   child: const Text(
-                    'Sign up',
+                    "S'inscrire",
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
