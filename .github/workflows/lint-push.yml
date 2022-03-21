@@ -48,8 +48,8 @@ jobs:
             ./**/*.scss
             !**/node_modules/
         
-  js-ts:
-    name: Lint js-ts
+  js:
+    name: Lint js
     runs-on: ubuntu-latest
     steps:
       - name: check out code 🛎
@@ -63,42 +63,15 @@ jobs:
         
       - uses: actions/upload-artifact@v2
         with:
-          name: js-ts-linted
+          name: js-linted
           path: | 
-            ./**/*.ts
             ./**/*.js
             !**/node_modules/
-        
-  html:
-    name: Lint html
-    runs-on: ubuntu-latest
-    steps:
-      - name: check out code 🛎
-        uses: actions/checkout@v2
-        
-      - name: npm ci
-        run: npm ci
-    
-      - name: Run HTML-Validate
-        run: npm run html-validate
-
-  ejs:
-    name: Lint ejs templates
-    runs-on: ubuntu-latest
-    steps:
-      - name: check out code 🛎
-        uses: actions/checkout@v2
-        
-      - name: npm ci
-        run: npm ci
-    
-      - name: Run ejs-Validate
-        run: npm run ejs-validate
         
   push:
     name: Push changes
     runs-on: ubuntu-latest
-    needs: [css, scss, js-ts, html, ejs]
+    needs: [css, scss, js]
     steps:
       - name: check out code 🛎
         uses: actions/checkout@v2
@@ -113,7 +86,7 @@ jobs:
           
       - uses: actions/download-artifact@v2
         with:
-          name: js-ts-linted
+          name: js-linted
     
       - name: Commit files
         continue-on-error: true
