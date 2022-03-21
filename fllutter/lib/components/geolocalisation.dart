@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'src/locations.dart' as locations;
 import 'package:fllutter/src/locations.dart' as locations;
+import 'package:fllutter/components/creation.dart';
+import 'package:fllutter/components/sign_up.dart';
 
 class Geolocalisation extends StatefulWidget {
   const Geolocalisation({Key? key}) : super(key: key);
@@ -45,6 +46,21 @@ class _MyAppState extends State<Geolocalisation> {
             zoom: 2,
           ),
           markers: _markers.values.toSet(),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return AddEven();
+                },
+              ),
+            );
+            print("form");
+          },
+          tooltip: 'Add',
+          child: Icon(Icons.add),
         ),
       ),
     );
