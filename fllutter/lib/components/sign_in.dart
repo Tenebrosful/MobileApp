@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fllutter/components/sign_up.dart';
+import 'package:fllutter/components/geolocalisation.dart';
 
 class Connexion extends StatelessWidget {
   static const String _title = 'Connexion';
@@ -101,6 +102,14 @@ class _StateConnectionWidget extends State<_StateConnection> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     //passer dans le screen geolocalisation
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Geolocalisation();
+                        },
+                      ),
+                    );
                   }
                   print(nameController.text);
                   print(passwordController.text);
