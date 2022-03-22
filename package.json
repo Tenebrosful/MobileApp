@@ -6,7 +6,7 @@
     "stylelint-scss": "npx stylelint **/*.scss --fix"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
+    "@types/node": "^17.0.22",
     "eslint": "^8.11.0",
     "nodemon": "^2.0.15",
     "stylelint": "^14.0.1",
