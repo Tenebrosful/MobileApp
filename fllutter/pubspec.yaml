@@ -39,6 +39,7 @@ dependencies:
   google_maps_flutter_web: ^0.3.2+1
   http: ^0.13.4
   json_serializable: ^6.1.5
+  animated_theme_switcher: ^2.0.6
 
 dev_dependencies:
   flutter_test:

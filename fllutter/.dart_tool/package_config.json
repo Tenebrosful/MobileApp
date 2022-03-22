@@ -14,6 +14,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "animated_theme_switcher",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/animated_theme_switcher-2.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "archive",
       "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/archive-3.2.2",
       "packageUri": "lib/",
@@ -512,7 +518,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-03-21T19:47:54.902879Z",
+  "generated": "2022-03-22T13:48:22.454179Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

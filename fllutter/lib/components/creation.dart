@@ -1,4 +1,7 @@
 import 'package:fllutter/components/geolocalisation.dart';
+import 'package:fllutter/components/profil.dart';
+import 'package:fllutter/model/user.dart';
+//import 'package:fllutter/components/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class AddEven extends StatelessWidget {
@@ -6,16 +9,65 @@ class AddEven extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
-        appBar: new AppBar(
-          title: new Text(
-            _title,
-            style: TextStyle(fontFamily: 'AlexBrush'),
-          ),
+    return Scaffold(
+      appBar: AppBar(title: Text(_title)),
+      body: const Center(
+        child: MyStatefulWidget(),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.indigo,
+              ),
+              accountName: Text("Nilesh Rathod"),
+              accountEmail: Text("nilesh@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text("Nilu"),
+              ),
+            ),
+            ListTile(
+              title: const Text('Home'),
+              leading: IconButton(
+                icon: Icon(Icons.home),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/');
+                },
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
+            ListTile(
+              title: const Text('Profil'),
+              leading: IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/profil');
+                },
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/profil');
+              },
+            ),
+            ListTile(
+              title: const Text('Create'),
+              leading: IconButton(
+                icon: Icon(Icons.create),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/ajout');
+                },
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/ajout');
+              },
+            ),
+          ],
         ),
-        body: const MyStatefulWidget(),
       ),
     );
   }
@@ -30,8 +82,9 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController titre = TextEditingController();
+  TextEditingController desc = TextEditingController();
+  TextEditingController lieu = TextEditingController();
   var _dateTime;
   @override
   Widget build(BuildContext context) {
@@ -50,7 +103,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   }
                   return null;
                 },
-                controller: nameController,
+                controller: titre,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Titre',
@@ -67,11 +120,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   }
                   return null;
                 },
-                controller: passwordController,
+                controller: desc,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Description',
                   hintText: "Ex: Fêtons l'anniv de Rita",
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Remplissez ce champ';
+                  }
+                  return null;
+                },
+                controller: lieu,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Lieu',
+                  hintText: "Ex: 61 rue de Boudonville",
                 ),
               ),
             ),
