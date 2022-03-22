@@ -1,16 +1,13 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:path/path.dart';
 import 'package:fllutter/components/user_preferences.dart';
 import 'package:fllutter/components/appbar_widget.dart';
-import 'package:fllutter/components/button_widget.dart';
 import 'package:fllutter/components/profile_widget.dart';
 import 'package:fllutter/components/textfield_widget.dart';
 import 'package:fllutter/model/user.dart';
 import 'package:fllutter/components/edit_profile_page.dart';
-import 'package:fllutter/components/numbers_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -40,10 +37,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               const SizedBox(height: 24),
               buildName(user),
-              const SizedBox(height: 24),
-              Center(child: buildUpgradeButton()),
-              const SizedBox(height: 24),
-              NumbersWidget(),
               const SizedBox(height: 48),
               buildAbout(user),
             ],
@@ -65,11 +58,6 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(color: Colors.grey),
           )
         ],
-      );
-
-  Widget buildUpgradeButton() => ButtonWidget(
-        text: 'Upgrade To PRO',
-        onClicked: () {},
       );
 
   Widget buildAbout(User user) => Container(

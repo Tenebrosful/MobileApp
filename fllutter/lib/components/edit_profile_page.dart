@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:fllutter/components/user_preferences.dart';
 import 'package:fllutter/components/appbar_widget.dart';
-import 'package:fllutter/components/button_widget.dart';
 import 'package:fllutter/components/profile_widget.dart';
 import 'package:fllutter/components/textfield_widget.dart';
 import 'package:fllutter/model/user.dart';
