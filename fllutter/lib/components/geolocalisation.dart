@@ -4,6 +4,8 @@ import 'package:fllutter/src/locations.dart' as locations;
 import 'package:fllutter/components/creation.dart';
 import 'package:fllutter/components/sign_up.dart';
 import 'package:fllutter/components/profil.dart';
+import 'package:fllutter/components/one_even.dart';
+import 'package:fllutter/model/even.dart';
 
 class Geolocalisation extends StatefulWidget {
   const Geolocalisation({Key? key}) : super(key: key);
@@ -23,9 +25,31 @@ class _MyAppState extends State<Geolocalisation> {
           markerId: MarkerId(office.name),
           position: LatLng(office.lat, office.lng),
           infoWindow: InfoWindow(
-            title: office.name,
-            snippet: office.address,
-          ),
+              title: office.name,
+              snippet: office.address,
+              onTap: () {
+                setState(() {
+                  //Navigator.pushNamed(context, '/evenement');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return OneEven(
+                          evenement: Evenement(
+                            titre: "titre",
+                            description:
+                                "Fêtons l'anniv de Rita ! RV le 30/03 à 20h. café Place Stanislas",
+                            lieu: "lieu",
+                            date: DateTime.now(),
+                            name: "name",
+                            email: "email",
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                });
+              }),
         );
         _markers[office.name] = marker;
       }
