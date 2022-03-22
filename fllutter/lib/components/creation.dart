@@ -171,14 +171,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.push(
+                  /*Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
                         return Geolocalisation();
                       },
                     ),
-                  );
+                  );*/
+                  Navigator.pushNamed(context, '/');
                 }
               },
               child: const Text('Valider'),

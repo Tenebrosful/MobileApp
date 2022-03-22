@@ -6,7 +6,13 @@ import 'components/sign_in.dart';
 import 'components/sign_up.dart';
 import 'components/profil.dart';
 import 'components/creation.dart';
-import 'package:fllutter/model/even.dart';
+import 'components/profile_page.dart';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:fllutter/components/user_preferences.dart';
+import 'package:fllutter/model/user.dart';
+import 'package:fllutter/themes.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,3 +45,35 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+/*
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  static final String title = 'User Profile';
+
+  @override
+  Widget build(BuildContext context) {
+    final user = UserPreferences.myUser;
+    return ThemeProvider(
+      initTheme: user.isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
+      builder: (context, myTheme) {
+        return MaterialApp(
+          title: title,
+          theme: myTheme,
+          home: ProfilePage(),
+        );
+      },
+    );
+  }
+}
+*/
