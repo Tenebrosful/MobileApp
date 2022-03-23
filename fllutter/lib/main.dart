@@ -13,7 +13,8 @@ import 'package:fllutter/data/user_preferences.dart';
 import 'package:fllutter/model/user.dart';
 import 'package:fllutter/themes.dart';
 import 'package:flutter/services.dart';
-import 'components/service_user.dart';
+import 'service/service_user.dart';
+import 'service/service_event.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,12 +39,14 @@ class MyApp extends StatelessWidget {
         '/inscription': (context) => Inscription(),
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
-        // When navigating to the "/connexion" route, build the SignIn widget.
+        // When navigating to the "/profil" route, build the Profil widget.
         '/profil': (context) => Profil(),
-        // When navigating to the "/connexion" route, build the SignIn widget.
+        // When navigating to the "/ajout" route, build the AddEven widget.
         '/ajout': (context) => AddEven(),
-        // When navigating to the "/connexion" route, build the SignIn widget.
+        // When navigating to the "/users" route, build the Service_user widget.
         '/users': (context) => Service_user(),
+        // When navigating to the "/events" route, build the Service_event widget.
+        '/events': (context) => Service_event(),
       },
     );
   }
