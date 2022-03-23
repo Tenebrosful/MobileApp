@@ -1,11 +1,15 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
-import 'package:fllutter/model/even.dart';
+//import 'package:fllutter/model/even.dart';
+import 'package:fllutter/src/events.dart';
 
 class OneEven extends StatelessWidget {
-  final Evenement evenement;
+  //final Evenement evenement;
+  final Event event;
   final TextEditingController _textFieldController = TextEditingController();
 
-  OneEven({required this.evenement});
+  OneEven({required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +49,7 @@ class OneEven extends StatelessWidget {
               color: Colors.blue[50],
               child: Center(
                 child: Text(
-                  evenement.description,
+                  event.description.toString(),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
@@ -143,7 +147,7 @@ class OneEven extends StatelessWidget {
 }
 
 class MyCustomFormState extends StatelessWidget {
-  final Evenement evenement;
+  final Event evenement;
   MyCustomFormState({required this.evenement});
   @override
   Widget build(BuildContext context) {

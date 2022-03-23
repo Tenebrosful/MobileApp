@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'package:fllutter/src/locations.dart' as locations;
@@ -36,15 +38,7 @@ class _MyAppState extends State<Geolocalisation> {
                     MaterialPageRoute(
                       builder: (context) {
                         return OneEven(
-                          evenement: Evenement(
-                            titre: "titre",
-                            description:
-                                "Fêtons l'anniv de Rita ! RV le 30/03 à 20h. café Place Stanislas",
-                            lieu: "lieu",
-                            date: DateTime.now(),
-                            name: "name",
-                            email: "email",
-                          ),
+                          event: event,
                         );
                       },
                     ),
