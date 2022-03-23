@@ -9,7 +9,7 @@ import 'components/creation.dart';
 import 'components/profile_page.dart';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fllutter/components/user_preferences.dart';
+import 'package:fllutter/data/user_preferences.dart';
 import 'package:fllutter/model/user.dart';
 import 'package:fllutter/themes.dart';
 import 'package:flutter/services.dart';
