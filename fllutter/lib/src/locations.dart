@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
@@ -97,4 +98,4 @@ Future<Locations> getGoogleOffices() async {
       await rootBundle.loadString('assets/locations.json'),
     ),
   );
-}
+}*/

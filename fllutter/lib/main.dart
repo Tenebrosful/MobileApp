@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Geolocalisation(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/users',
+      initialRoute: '/',
       routes: {
         // When navigating to the "/inscription" route, build the SignUp widget.
         '/inscription': (context) => Inscription(),

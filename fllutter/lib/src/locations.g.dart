@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-
+/*
 part of 'locations.dart';
 
 // **************************************************************************
@@ -65,3 +65,4 @@ Map<String, dynamic> _$LocationsToJson(Locations instance) => <String, dynamic>{
       'offices': instance.offices,
       'regions': instance.regions,
     };
+*/

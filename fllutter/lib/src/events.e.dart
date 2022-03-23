@@ -20,20 +20,26 @@ Map<String, dynamic> _$LatLngToJson(LatLng instance) => <String, dynamic>{
 
 Event _$EventFromJson(Map<String?, dynamic> json) => Event(
       coords: LatLng.fromJson(json['coords'] as Map<String, dynamic>),
+      createdAt: json['createdAt'],
       date: json['date'],
       description: json['description'],
       id: json['id'],
+      mail: json['mail'],
       owner_id: json['owner_id'],
       title: json['title'],
+      updatedAt: json['updatedAt'],
     );
 
 Map<String?, dynamic> _$EventToJson(Event instance) => <String?, dynamic>{
       'coords': instance.coords,
+      'createdAt': instance.createdAt,
       'date': instance.date,
       'description': instance.description,
       'id': instance.id,
+      'mail': instance.mail,
       'owner_id': instance.owner_id,
       'title': instance.title,
+      'updatedAt': instance.updatedAt,
     };
 
 Events _$EventsFromJson(Map<String?, dynamic> json) => Events(

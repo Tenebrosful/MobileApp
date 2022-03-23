@@ -22,22 +22,28 @@ class LatLng {
 class Event {
   Event({
     required this.coords,
+    required this.createdAt,
     required this.date,
     required this.description,
     required this.id,
+    required this.mail,
     required this.owner_id,
     required this.title,
+    required this.updatedAt,
   });
 
   factory Event.fromJson(Map<String?, dynamic> json) => _$EventFromJson(json);
   Map<String?, dynamic> toJson() => _$EventToJson(this);
 
   final LatLng coords;
+  final String? createdAt;
   final String? date;
   final String? description;
   final String? id;
+  final String? mail;
   final String? owner_id;
   final String? title;
+  final String? updatedAt;
 }
 
 @JsonSerializable()

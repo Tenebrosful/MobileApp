@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:fllutter/src/locations.dart' as locations;
+//import 'package:fllutter/src/locations.dart' as locations;
+import 'package:fllutter/src/events.dart' as locations;
 import 'package:fllutter/components/creation.dart';
 import 'package:fllutter/components/sign_up.dart';
 import 'package:fllutter/components/profil.dart';
@@ -17,16 +18,16 @@ class Geolocalisation extends StatefulWidget {
 class _MyAppState extends State<Geolocalisation> {
   final Map<String, Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final googleOffices = await locations.getGoogleOffices();
+    final events = await locations.fetchEvent();
     setState(() {
       _markers.clear();
-      for (final office in googleOffices.offices) {
+      for (final event in events.events) {
         final marker = Marker(
-          markerId: MarkerId(office.name),
-          position: LatLng(office.lat, office.lng),
+          markerId: MarkerId(event.title.toString()),
+          position: LatLng(event.coords.lat, event.coords.long),
           infoWindow: InfoWindow(
-              title: office.name,
-              snippet: office.address,
+              title: event.title.toString(),
+              snippet: event.coords.address.toString(),
               onTap: () {
                 setState(() {
                   //Navigator.pushNamed(context, '/evenement');
@@ -51,7 +52,7 @@ class _MyAppState extends State<Geolocalisation> {
                 });
               }),
         );
-        _markers[office.name] = marker;
+        _markers[event.title.toString()] = marker;
       }
     });
   }
