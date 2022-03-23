@@ -13,6 +13,7 @@ import 'package:fllutter/data/user_preferences.dart';
 import 'package:fllutter/model/user.dart';
 import 'package:fllutter/themes.dart';
 import 'package:flutter/services.dart';
+import 'components/service_user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Geolocalisation(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/',
+      initialRoute: '/users',
       routes: {
         // When navigating to the "/inscription" route, build the SignUp widget.
         '/inscription': (context) => Inscription(),
@@ -41,6 +42,8 @@ class MyApp extends StatelessWidget {
         '/profil': (context) => Profil(),
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/ajout': (context) => AddEven(),
+        // When navigating to the "/connexion" route, build the SignIn widget.
+        '/users': (context) => Service_user(),
       },
     );
   }
