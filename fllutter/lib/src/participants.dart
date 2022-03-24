@@ -41,18 +41,19 @@ class Participant {
 
 @JsonSerializable()
 class Event {
-  Event({
-    required this.coords,
-    required this.createdAt,
-    required this.date,
-    required this.description,
-    required this.id,
-    required this.mail,
-    required this.owner_id,
-    required this.title,
-    required this.updatedAt,
-    required this.participants,
-  });
+  Event(
+      {required this.coords,
+      required this.createdAt,
+      required this.date,
+      required this.description,
+      required this.id,
+      required this.mail,
+      required this.owner_id,
+      required this.title,
+      required this.updatedAt,
+      required this.participants,
+      required this.comingParticipant,
+      required this.totalParticipant});
 
   factory Event.fromJson(Map<String?, dynamic> json) => _$EventFromJson(json);
   Map<String?, dynamic> toJson() => _$EventToJson(this);
@@ -67,6 +68,8 @@ class Event {
   final String? title;
   final String? updatedAt;
   final List<Participant> participants;
+  final int? comingParticipant;
+  final int? totalParticipant;
 }
 
 @JsonSerializable()
