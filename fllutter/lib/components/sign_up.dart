@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fllutter/components/sign_in.dart';
-
+/*
 class Inscription extends StatelessWidget {
   static const String _title = 'Inscription';
 
@@ -147,3 +147,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+*/

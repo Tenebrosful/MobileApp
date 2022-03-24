@@ -35,8 +35,6 @@ class MyApp extends StatelessWidget {
       // When navigating to the "/" route, build the SignIn widget.
       initialRoute: '/',
       routes: {
-        // When navigating to the "/inscription" route, build the SignUp widget.
-        '/inscription': (context) => Inscription(),
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
         // When navigating to the "/profil" route, build the Profil widget.

@@ -126,14 +126,14 @@ class _StateConnectionWidget extends State<_StateConnection> {
                   ),
                   onPressed: () {
                     //passer dans le screen inscription
-                    Navigator.push(
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
                           return Inscription();
                         },
                       ),
-                    );
+                    );*/
                   },
                 )
               ],
