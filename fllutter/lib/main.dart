@@ -15,6 +15,7 @@ import 'package:fllutter/themes.dart';
 import 'package:flutter/services.dart';
 import 'service/service_user.dart';
 import 'service/service_event.dart';
+import 'service/service_participant.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
         '/users': (context) => Service_user(),
         // When navigating to the "/events" route, build the Service_event widget.
         '/events': (context) => Service_event(),
+        // When navigating to the "/events" route, build the Service_event widget.
+        '/participants': (context) => Service_participant(),
       },
     );
   }
