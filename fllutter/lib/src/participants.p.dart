@@ -18,19 +18,20 @@ Map<String, dynamic> _$LatLngToJson(LatLng instance) => <String, dynamic>{
     };
 
 Event _$EventFromJson(Map<String?, dynamic> json) => Event(
-      coords: LatLng.fromJson(json['coords'] as Map<String, dynamic>),
-      createdAt: json['createdAt'],
-      date: json['date'],
-      description: json['description'],
-      id: json['id'],
-      mail: json['mail'],
-      owner_id: json['owner_id'],
-      title: json['title'],
-      updatedAt: json['updatedAt'],
-      participants: (json['participants'] as List<dynamic>)
-          .map((e) => Participant.fromJson(e as Map<String?, dynamic>))
-          .toList(),
-    );
+    coords: LatLng.fromJson(json['coords'] as Map<String, dynamic>),
+    createdAt: json['createdAt'],
+    date: json['date'],
+    description: json['description'],
+    id: json['id'],
+    mail: json['mail'],
+    owner_id: json['owner_id'],
+    title: json['title'],
+    updatedAt: json['updatedAt'],
+    participants: (json['participants'] as List<dynamic>)
+        .map((e) => Participant.fromJson(e as Map<String?, dynamic>))
+        .toList(),
+    comingParticipant: json['comingParticipant'],
+    totalParticipant: json['totalParticipant']);
 
 Map<String?, dynamic> _$EventToJson(Event instance) => <String?, dynamic>{
       'coords': instance.coords,
@@ -43,6 +44,8 @@ Map<String?, dynamic> _$EventToJson(Event instance) => <String?, dynamic>{
       'title': instance.title,
       'updatedAt': instance.updatedAt,
       'participants': instance.participants,
+      'comingParticipant': instance.comingParticipant,
+      'totalParticipant': instance.totalParticipant
     };
 
 Events _$EventsFromJson(Map<String?, dynamic> json) => Events(
