@@ -1,5 +1,6 @@
+import 'package:fllutter/components/commentaires.dart';
 import 'package:fllutter/components/geolocalisation.dart';
-import 'package:fllutter/components/one_even.dart';
+import 'package:fllutter/components/one_event.dart';
 import 'package:fllutter/model/even.dart';
 import 'package:flutter/material.dart';
 import 'components/sign_in.dart';
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
         '/events': (context) => Service_event(),
         // When navigating to the "/events" route, build the Service_event widget.
         '/participants': (context) => Service_participant(),
+        '/evenement': (context) => OneEvent(),
+        '/commentaires': (context) => Commentaires(),
       },
     );
   }
