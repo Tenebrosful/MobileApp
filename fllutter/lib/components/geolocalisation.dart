@@ -1,14 +1,8 @@
-import 'dart:html';
-
+import 'package:fllutter/src/participants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:fllutter/src/locations.dart' as locations;
-import 'package:fllutter/src/events.dart' as locations;
 import 'package:fllutter/components/creation.dart';
-import 'package:fllutter/components/sign_up.dart';
-import 'package:fllutter/components/profil.dart';
-import 'package:fllutter/components/one_even.dart';
-import 'package:fllutter/model/even.dart';
+import 'package:fllutter/src/participants.dart' as eventParticipant;
 
 class Geolocalisation extends StatefulWidget {
   const Geolocalisation({Key? key}) : super(key: key);
@@ -19,8 +13,10 @@ class Geolocalisation extends StatefulWidget {
 
 class _MyAppState extends State<Geolocalisation> {
   final Map<String, Marker> _markers = {};
+
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final events = await locations.fetchEvent();
+    final events = await eventParticipant.fetchParticipant();
+
     setState(() {
       _markers.clear();
       for (final event in events.events) {
@@ -32,17 +28,7 @@ class _MyAppState extends State<Geolocalisation> {
               snippet: event.coords.address.toString(),
               onTap: () {
                 setState(() {
-                  //Navigator.pushNamed(context, '/evenement');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return OneEven(
-                          event: event,
-                        );
-                      },
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/evenement', arguments: event);
                 });
               }),
         );
