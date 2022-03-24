@@ -1,3 +1,5 @@
+import 'dart:html';
+import 'package:fllutter/src/events.dart' as events;
 import 'package:fllutter/components/geolocalisation.dart';
 import 'package:fllutter/components/profil.dart';
 import 'package:fllutter/model/user.dart';
@@ -86,6 +88,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController desc = TextEditingController();
   TextEditingController lieu = TextEditingController();
   var _dateTime;
+  late Future<Event>? futureEvents;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -171,15 +175,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  /*Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Geolocalisation();
-                      },
-                    ),
-                  );*/
-                  Navigator.pushNamed(context, '/');
+                  futureEvents = events.createEvent(
+                    titre.text.toString(),
+                    _dateTime.toString(),
+                    lieu.text.toString(),
+                    desc.text,
+                    48.683500,
+                    6.1594200,
+                  ) as Future<Event>?;
                 }
               },
               child: const Text('Valider'),
