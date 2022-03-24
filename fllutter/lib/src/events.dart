@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
+import 'package:uuid/uuid.dart';
 part 'events.e.dart';
 
 @JsonSerializable()
@@ -70,5 +71,37 @@ Future<Events> fetchEvent() async {
     return Events.fromJson(res);
   } else {
     throw Exception('Failed to load event');
+  }
+}
+
+Future<Event> createEvent(
+  String? title,
+  String date,
+  String address,
+  String desc,
+  double lat,
+  double long,
+) async {
+  var uuid = Uuid();
+  final response = await http.post(
+    Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62460/api/event'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      "id": uuid.v4(),
+      "date": date,
+      "title": title,
+      "description": desc,
+      "coords": {"address": address, "lat": lat, "long": long}
+    }),
+  );
+
+  if (response.statusCode == 201) {
+    var res = json.decode(response.body);
+
+    return Event.fromJson(res);
+  } else {
+    throw Exception('Failed to create event');
   }
 }
