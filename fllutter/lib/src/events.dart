@@ -87,12 +87,16 @@ Future<Event> createEvent(
     Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62460/api/event'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+      "user-agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36"
     },
     body: jsonEncode(<String, dynamic>{
       "id": uuid.v4(),
       "date": date,
       "title": title,
       "description": desc,
+      "owner_id": "229c881a-ae8d-447b-8af8-aff29fde7a17",
       "coords": {"address": address, "lat": lat, "long": long}
     }),
   );

@@ -89,10 +89,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController titre = TextEditingController();
   TextEditingController desc = TextEditingController();
-  TextEditingController lieu = TextEditingController();
-  var _dateTime;
   late Future<Event>? futureEvents;
-  var adresse;
+  var _dateTime;
+  String? adresse;
+  double? latitude;
+  double? longitude;
 
   void onError(PlacesAutocompleteResponse response) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -138,10 +139,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         SnackBar(content: Text("${p.description} - $lat/$lng")),
       );
 
-      //print(p.description);
       adresse = p.description;
-      print(lat);
-      print(lng);
+      latitude = lat;
+      longitude = lng;
     }
   }
 
@@ -216,14 +216,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   print(adresse);
+                  print(latitude);
+                  print(longitude);
                   futureEvents = events.createEvent(
                     titre.text.toString(),
                     _dateTime.toString(),
                     //lieu.text.toString(),
-                    "lieu",
-                    desc.text,
-                    48.683500,
-                    6.1594200,
+                    adresse.toString(),
+                    desc.text.toString(),
+                    latitude!,
+                    longitude!,
                   ) as Future<Event>?;
                 }
               },
@@ -235,26 +237,3 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
-/*
-Future<void> displayPrediction(Prediction? p, BuildContext context) async {
-  if (p != null) {
-    // get detail (lat/lng)
-    GoogleMapsPlaces _places = GoogleMapsPlaces(
-      apiKey: kGoogleApiKey,
-      //apiHeaders: await const GoogleApiHeaders().getHeaders(),
-    );
-    PlacesDetailsResponse detail =
-        await _places.getDetailsByPlaceId(p.placeId!);
-    final lat = detail.result.geometry!.location.lat;
-    final lng = detail.result.geometry!.location.lng;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("${p.description} - $lat/$lng")),
-    );
-
-    print(p.description);
-    print(lat);
-    print(lng);
-  }
-}
-*/

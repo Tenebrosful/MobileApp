@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Geolocalisation(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/',
+      initialRoute: '/events',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
