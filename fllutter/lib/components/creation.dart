@@ -1,10 +1,12 @@
-import 'dart:html';
 import 'package:fllutter/src/events.dart' as events;
 import 'package:fllutter/components/geolocalisation.dart';
 import 'package:fllutter/components/profil.dart';
-import 'package:fllutter/model/user.dart';
-//import 'package:fllutter/components/sign_up.dart';
+import 'package:fllutter/src/events.dart';
 import 'package:flutter/material.dart';
+import 'package:fllutter/flutter_google_places.dart';
+import 'package:google_maps_webservice/places.dart';
+
+const kGoogleApiKey = "AIzaSyB7noULujCymE-32A5auy10hE1060P-zSw";
 
 class AddEven extends StatelessWidget {
   static const String _title = 'Ajout événement';
@@ -83,12 +85,65 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  Mode? _mode = Mode.overlay;
   final _formKey = GlobalKey<FormState>();
   TextEditingController titre = TextEditingController();
   TextEditingController desc = TextEditingController();
   TextEditingController lieu = TextEditingController();
   var _dateTime;
   late Future<Event>? futureEvents;
+  var adresse;
+
+  void onError(PlacesAutocompleteResponse response) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(response.errorMessage!)),
+    );
+  }
+
+  Future<void> _handlePressButton() async {
+    Prediction? p = await PlacesAutocomplete.show(
+      context: context,
+      apiKey: kGoogleApiKey,
+      onError: onError,
+      mode: _mode!,
+      language: "fr",
+      decoration: InputDecoration(
+        hintText: 'Search',
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: const BorderSide(
+            color: Colors.white,
+          ),
+        ),
+      ),
+      components: [Component(Component.country, "fr")],
+    );
+
+    displayPrediction(p, context);
+  }
+
+  Future<void> displayPrediction(Prediction? p, BuildContext context) async {
+    if (p != null) {
+      // get detail (lat/lng)
+      GoogleMapsPlaces _places = GoogleMapsPlaces(
+        apiKey: kGoogleApiKey,
+        //apiHeaders: await const GoogleApiHeaders().getHeaders(),
+      );
+      PlacesDetailsResponse detail =
+          await _places.getDetailsByPlaceId(p.placeId!);
+      final lat = detail.result.geometry!.location.lat;
+      final lng = detail.result.geometry!.location.lng;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("${p.description} - $lat/$lng")),
+      );
+
+      //print(p.description);
+      adresse = p.description;
+      print(lat);
+      print(lng);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +160,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   if (value == null || value.isEmpty) {
                     return 'Remplissez ce champ';
                   }
-                  return null;
                 },
                 controller: titre,
                 decoration: const InputDecoration(
@@ -122,7 +176,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   if (value == null || value.isEmpty) {
                     return 'Remplissez ce champ';
                   }
-                  return null;
                 },
                 controller: desc,
                 decoration: const InputDecoration(
@@ -132,22 +185,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Remplissez ce champ';
-                  }
-                  return null;
-                },
-                controller: lieu,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Lieu',
-                  hintText: "Ex: 61 rue de Boudonville",
-                ),
-              ),
+            ElevatedButton(
+              onPressed: _handlePressButton,
+              child: const Text("Search places"),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,10 +215,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
+                  print(adresse);
                   futureEvents = events.createEvent(
                     titre.text.toString(),
                     _dateTime.toString(),
-                    lieu.text.toString(),
+                    //lieu.text.toString(),
+                    "lieu",
                     desc.text,
                     48.683500,
                     6.1594200,
@@ -193,3 +235,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     );
   }
 }
+/*
+Future<void> displayPrediction(Prediction? p, BuildContext context) async {
+  if (p != null) {
+    // get detail (lat/lng)
+    GoogleMapsPlaces _places = GoogleMapsPlaces(
+      apiKey: kGoogleApiKey,
+      //apiHeaders: await const GoogleApiHeaders().getHeaders(),
+    );
+    PlacesDetailsResponse detail =
+        await _places.getDetailsByPlaceId(p.placeId!);
+    final lat = detail.result.geometry!.location.lat;
+    final lng = detail.result.geometry!.location.lng;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("${p.description} - $lat/$lng")),
+    );
+
+    print(p.description);
+    print(lat);
+    print(lng);
+  }
+}
+*/

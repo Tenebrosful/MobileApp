@@ -41,6 +41,9 @@ dependencies:
   json_serializable: ^6.1.5
   animated_theme_switcher: ^2.0.6
   uuid: ^3.0.6
+  flutter_google_places: ^0.3.0
+  google_maps_webservice: ^0.0.20-nullsafety.5
+  rxdart: ^0.26.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +78,8 @@ flutter:
   uses-material-design: true
   assets:
       - assets/jsons/locations.json
+      - assets/images/google_black.png
+      - assets/images/google_white.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
