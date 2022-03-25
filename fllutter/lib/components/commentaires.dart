@@ -1,4 +1,4 @@
-import 'package:fllutter/src/participants.dart';
+import 'package:fllutter/src/owner_participants.dart';
 import 'package:flutter/material.dart';
 
 class Commentaires extends StatelessWidget {
@@ -6,6 +6,8 @@ class Commentaires extends StatelessWidget {
   Widget build(BuildContext context) {
     //final event = ModalRoute.of(context)!.settings.arguments as Event;
     TextEditingController commentaire = TextEditingController();
+    final events = ModalRoute.of(context)!.settings.arguments as Event;
+    final commentaires = events.participants;
 
     Future<void> _displayDialog() async {
       return showDialog<void>(
@@ -34,41 +36,39 @@ class Commentaires extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Commentaires de l'événement"),
+        title: Text('Commentaires'),
       ),
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height / 1.5,
+            height: MediaQuery.of(context).size.height / 1.4,
             child: Container(
-                color: Colors.green[50],
-                child: ListView.builder(
-                    itemCount: 100,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                          height: 50,
-                          color: index.isEven
-                              ? Colors.amberAccent
-                              : Colors.blueAccent,
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
-                              child: Row(children: [
-                                Text("Ziyi",
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold)),
-                                SizedBox(width: 6),
-                                Text("sera présente",
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                    ))
-                              ])));
-                    })),
+              color: Colors.green[50],
+              padding: EdgeInsets.fromLTRB(25, 25, 25, 25),
+              child: ListView(
+                children: commentaires.map((commentaire) {
+                  return Container(
+                    height: 50,
+                    color: Colors.green.shade50,
+                    child: Row(children: [
+                      Text(commentaire.username.toString(),
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold)),
+                      SizedBox(width: 6),
+                      Text("test",
+                          style: TextStyle(
+                            fontSize: 17,
+                          ))
+                    ]),
+                  );
+                }).toList(),
+              ),
+            ),
           ),
           SizedBox(height: 50),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                primary: Colors.indigo, fixedSize: Size.fromWidth(300)),
+                primary: Colors.indigo, fixedSize: Size.fromWidth(320)),
             onPressed: () => _displayDialog(),
             child: ListTile(
               title: const Text('Envoyer un commentaire',
