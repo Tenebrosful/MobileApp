@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fllutter/components/creation.dart';
-import 'package:fllutter/src/participants.dart' as eventParticipant;
+import 'package:fllutter/src/owner_participants.dart' as eventOwnerParticipant;
 
 class Geolocalisation extends StatefulWidget {
   const Geolocalisation({Key? key}) : super(key: key);
@@ -14,8 +14,8 @@ class _MyAppState extends State<Geolocalisation> {
   final Map<String, Marker> _markers = {};
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final events = await eventParticipant.fetchParticipant();
-
+    final events = await eventOwnerParticipant.fetchOwnerParticipant();
+    print(events);
     setState(() {
       _markers.clear();
       for (final event in events.events) {
