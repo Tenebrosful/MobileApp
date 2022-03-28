@@ -5,20 +5,13 @@ import 'package:fllutter/src/auth.dart';
 import 'package:fllutter/src/auth.dart' as auth;
 
 class Service_auth extends StatefulWidget {
-  const Service_auth({Key? key}) : super(key: key);
-
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<Service_auth> {
-  late Future<Map<String?, dynamic>> futureUser;
-
-  @override
-  void initState() {
-    super.initState();
-    futureUser = auth.logIn("user", "user");
-  }
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +20,29 @@ class _MyAppState extends State<Service_auth> {
         title: const Text('Service Auth'),
         backgroundColor: Colors.green[700],
       ),
-      body: FutureBuilder<Map<String?, dynamic>>(
-        future: futureUser,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var users = snapshot.data!;
-            return Text(users.toString());
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-
-          // By default, show a loading spinner.
-          return const CircularProgressIndicator();
-        },
+      body: Column(
+        children: [
+          TextField(
+            controller: nameController,
+            decoration: InputDecoration(labelText: 'Username'),
+          ),
+          TextField(
+            controller: passwordController,
+            obscureText: true,
+            decoration: InputDecoration(labelText: 'Password'),
+          ),
+          ElevatedButton(
+            child: Text("Valider"),
+            onPressed: () async {
+              var username = nameController.text;
+              var password = passwordController.text;
+              var jwt = await logIn(username, password);
+              if (jwt != null) {
+                print(jwt['user']['token']);
+              }
+            },
+          ),
+        ],
       ),
     );
   }
