@@ -57,29 +57,34 @@ class Commentaires extends StatelessWidget {
                               children: commentaires_data.map((commentaire) {
                             return Container(
                               constraints: BoxConstraints(
-                                maxHeight: double.infinity,
-                              ),
+                                  maxHeight: double.infinity,
+                                  maxWidth: double.infinity),
                               color: Colors.green.shade50,
                               child: Column(children: <Widget>[
                                 Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      commentaire.author.username.toString() +
-                                          " : ",
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                    )),
-                                SizedBox(height: 6),
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    commentaire.author.username.toString() +
+                                        " : ",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                SizedBox(height: 8),
                                 Container(
-                                    width: 300,
+                                  padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
                                     child: Text(
                                       commentaire.message.toString(),
                                       style: TextStyle(
                                         fontSize: 17,
                                       ),
                                       textAlign: TextAlign.justify,
-                                    )),
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(height: 25),
                               ]),
                             );
@@ -96,7 +101,7 @@ class Commentaires extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.indigo, fixedSize: Size.fromWidth(320)),
+                    primary: Colors.indigo, fixedSize: Size.fromWidth(300)),
                 onPressed: () => _displayDialog(),
                 child: ListTile(
                   title: const Text('Envoyer un commentaire',
