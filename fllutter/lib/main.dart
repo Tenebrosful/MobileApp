@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'service/service_user.dart';
 import 'service/service_event.dart';
 import 'service/service_participant.dart';
+import 'service/service_comment.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Geolocalisation(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/events',
+      initialRoute: '/commentaire',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
@@ -50,7 +51,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/events" route, build the Service_event widget.
         '/participants': (context) => Service_participant(),
         '/evenement': (context) => OneEvent(),
-        '/commentaires': (context) => Commentaires(),
+        //'/commentaires': (context) => Commentaires(),
+        '/commentaire': (context) => Service_comment(),
       },
     );
   }
