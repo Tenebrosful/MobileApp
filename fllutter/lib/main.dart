@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Geolocalisation(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/commentaire',
+      initialRoute: '/',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
@@ -51,8 +51,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/events" route, build the Service_event widget.
         '/participants': (context) => Service_participant(),
         '/evenement': (context) => OneEvent(),
-        //'/commentaires': (context) => Commentaires(),
-        '/commentaire': (context) => Service_comment(),
+        '/commentaires': (context) => Commentaires(),
+        //'/commentaire': (context) => Service_comment(),
       },
     );
   }
