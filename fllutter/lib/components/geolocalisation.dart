@@ -5,15 +5,11 @@ import 'dart:convert';
 import 'package:fllutter/src/owner_participants.dart' as eventOwnerParticipant;
 
 class Geolocalisation extends StatefulWidget {
-  Geolocalisation(this.jwt, this.payload);
+  Geolocalisation(this.token);
 
-  factory Geolocalisation.fromBase64(String jwt) => Geolocalisation(
-      jwt,
-      json.decode(
-          ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1])))));
+  factory Geolocalisation.fromBase64(String token) => Geolocalisation(token);
 
-  final String jwt;
-  final Map<String, dynamic> payload;
+  final String token;
 
   @override
   _MyAppState createState() => _MyAppState();
