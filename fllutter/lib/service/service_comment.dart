@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fllutter/src/comments.dart' as comments;
-
+/*
 class Service_comment extends StatefulWidget {
   const Service_comment({Key? key}) : super(key: key);
 
@@ -48,3 +48,4 @@ class _MyAppState extends State<Service_comment> {
         ));
   }
 }
+*/
