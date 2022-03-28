@@ -32,12 +32,6 @@ class _StateConnectionWidget extends State<_StateConnection> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  void displayDialog(context, title, text) => showDialog(
-        context: context,
-        builder: (context) =>
-            AlertDialog(title: Text(title), content: Text(text)),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -107,35 +101,25 @@ class _StateConnectionWidget extends State<_StateConnection> {
               height: 50,
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
-                child: const Text('Valider'),
+                child: Text("Valider"),
                 onPressed: () async {
-                  var login = nameController.text;
-                  var password = passwordController.text;
-                  var jwt = await logIn(login, password);
-
-                  print(jwt.user.token);
-                  /*if (_formKey.currentState!.validate()) {
-                    //passer dans le screen geolocalisation
-                    var login = nameController.text;
+                  if (_formKey.currentState!.validate()) {
+                    var username = nameController.text;
                     var password = passwordController.text;
-                    var jwt = await logIn(login, password);
+                    var jwt = await logIn(username, password);
                     var storage = FlutterSecureStorage();
-                    print(jwt.user.token);
                     if (jwt != null) {
-                      print(jwt.user.token);
-                      //storage.write(key: "jwt", value: jwt);
+                      print(jwt['user']['token']);
+                      storage.write(key: "jwt", value: jwt['user']['token']);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              Geolocalisation.fromBase64(jwt.user.token),
+                              Geolocalisation.fromBase64(jwt['user']['token']),
                         ),
                       );
-                    } else {
-                      displayDialog(context, "Error",
-                          "No account was found matching that username and password");
                     }
-                  }*/
+                  }
                 },
               ),
             ),
@@ -148,15 +132,7 @@ class _StateConnectionWidget extends State<_StateConnection> {
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    //passer dans le screen inscription
-                    /*Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Inscription();
-                        },
-                      ),
-                    );*/
+                    // Vue inscription
                   },
                 )
               ],
