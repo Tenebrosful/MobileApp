@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Geolocalisation(),
+      home: Connexion(),
       // When navigating to the "/" route, build the SignIn widget.
       initialRoute: '/',
       routes: {
@@ -48,9 +48,11 @@ class MyApp extends StatelessWidget {
         '/users': (context) => Service_user(),
         // When navigating to the "/events" route, build the Service_event widget.
         '/events': (context) => Service_event(),
-        // When navigating to the "/events" route, build the Service_event widget.
+        // When navigating to the "/participants" route, build the Service_participant widget.
         '/participants': (context) => Service_participant(),
+        // When navigating to the "/evenement" route, build the OneEvent widget.
         '/evenement': (context) => OneEvent(),
+        // When navigating to the "/commentaires" route, build the Commentaires widget.
         '/commentaires': (context) => Commentaires(),
         //'/commentaire': (context) => Service_comment(),
       },
