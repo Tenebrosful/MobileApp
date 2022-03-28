@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/users" route, build the Service_user widget.
         '/users': (context) => Service_user(),
         // When navigating to the "/events" route, build the Service_event widget.
-        '/events': (context) => Service_event(),
+        //'/events': (context) => Service_event(),
         // When navigating to the "/participants" route, build the Service_participant widget.
         '/participants': (context) => Service_participant(),
         // When navigating to the "/evenement" route, build the OneEvent widget.
