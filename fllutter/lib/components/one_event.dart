@@ -98,7 +98,7 @@ class OneEvent extends StatelessWidget {
               SizedBox(
                 height: 250,
                 child: Scrollbar(
-                  isAlwaysShown: true,
+                  isAlwaysShown: false,
                   child: Container(
                     color: Colors.green[50],
                     padding: EdgeInsets.fromLTRB(25, 20, 20, 25),
