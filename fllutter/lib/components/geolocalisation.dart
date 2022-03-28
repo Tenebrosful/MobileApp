@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fllutter/components/creation.dart';
+import 'dart:convert';
 import 'package:fllutter/src/owner_participants.dart' as eventOwnerParticipant;
 
 class Geolocalisation extends StatefulWidget {
-  const Geolocalisation({Key? key}) : super(key: key);
+  Geolocalisation(this.jwt, this.payload);
+
+  factory Geolocalisation.fromBase64(String jwt) => Geolocalisation(
+      jwt,
+      json.decode(
+          ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1])))));
+
+  final String jwt;
+  final Map<String, dynamic> payload;
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -15,7 +24,7 @@ class _MyAppState extends State<Geolocalisation> {
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final events = await eventOwnerParticipant.fetchOwnerParticipant();
-    print(events);
+
     setState(() {
       _markers.clear();
       for (final event in events.events) {

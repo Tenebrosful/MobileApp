@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fllutter/components/sign_up.dart';
 import 'package:fllutter/components/geolocalisation.dart';
+import 'package:fllutter/src/auth.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'dart:convert' show json, base64, ascii;
 
 class Connexion extends StatelessWidget {
   static const String _title = 'Connexion';
@@ -28,6 +31,12 @@ class _StateConnectionWidget extends State<_StateConnection> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  void displayDialog(context, title, text) => showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(title: Text(title), content: Text(text)),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -99,20 +108,34 @@ class _StateConnectionWidget extends State<_StateConnection> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
                 child: const Text('Valider'),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+                onPressed: () async {
+                  var login = nameController.text;
+                  var password = passwordController.text;
+                  var jwt = await logIn(login, password);
+
+                  print(jwt.user.token);
+                  /*if (_formKey.currentState!.validate()) {
                     //passer dans le screen geolocalisation
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return Geolocalisation();
-                        },
-                      ),
-                    );
-                  }
-                  print(nameController.text);
-                  print(passwordController.text);
+                    var login = nameController.text;
+                    var password = passwordController.text;
+                    var jwt = await logIn(login, password);
+                    var storage = FlutterSecureStorage();
+                    print(jwt.user.token);
+                    if (jwt != null) {
+                      print(jwt.user.token);
+                      //storage.write(key: "jwt", value: jwt);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Geolocalisation.fromBase64(jwt.user.token),
+                        ),
+                      );
+                    } else {
+                      displayDialog(context, "Error",
+                          "No account was found matching that username and password");
+                    }
+                  }*/
                 },
               ),
             ),
