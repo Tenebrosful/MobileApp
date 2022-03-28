@@ -18,6 +18,7 @@ import 'service/service_user.dart';
 import 'service/service_event.dart';
 import 'service/service_participant.dart';
 import 'service/service_comment.dart';
+import 'service/service_auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,9 +35,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Connexion(),
+      home: Service_auth(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/',
+      initialRoute: '/auth',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/commentaires" route, build the Commentaires widget.
         '/commentaires': (context) => Commentaires(),
         //'/commentaire': (context) => Service_comment(),
+        '/auth': (context) => Service_auth(),
       },
     );
   }
