@@ -35,9 +35,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Service_auth(),
+      home: Connexion(),
       // When navigating to the "/" route, build the SignIn widget.
-      initialRoute: '/auth',
+      initialRoute: '/',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
         '/connexion': (context) => Connexion(),
