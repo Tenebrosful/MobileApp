@@ -30,7 +30,7 @@ class Auth {
   final User user;
 }
 
-Future<Auth> logIn(String login, String password) async {
+Future<Map<String?, dynamic>> logIn(String login, String password) async {
   var response = await http.post(
       Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62461/api/auth/'),
       body: {"login": login, "password": password});
