@@ -36,7 +36,7 @@ class OneEvent extends StatelessWidget {
                     ]),
                     SizedBox(height: 20),
                     Row(children: <Widget>[
-                      Icon(Icons.star, color: Colors.yellow.shade700),
+                      Icon(Icons.person, color: Colors.yellow.shade700),
                       SizedBox(width: 20),
                       Text(
                         event.owner.username.toString(),
@@ -45,7 +45,7 @@ class OneEvent extends StatelessWidget {
                     ]),
                     SizedBox(height: 20),
                     Row(children: <Widget>[
-                      Icon(Icons.person, color: Colors.grey),
+                      Icon(Icons.groups, color: Colors.grey),
                       SizedBox(width: 20),
                       Text(
                         event.comingParticipant.toString() + ' participant(s)',
