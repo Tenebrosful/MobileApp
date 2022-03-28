@@ -187,13 +187,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
             ElevatedButton(
               onPressed: _handlePressButton,
-              child: const Text("Search places"),
+              child: const Text("Recherche lieux"),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(_dateTime == null
-                    ? "Nothing has been pick"
+                    ? "Rien n'a été choisi"
                     : _dateTime.toString()),
                 ElevatedButton(
                   child: Text("Choisis une date"),
