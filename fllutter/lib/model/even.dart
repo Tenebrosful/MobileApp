@@ -1,4 +1,4 @@
-class Evenement {
+/*class Evenement {
   final String titre;
   final String description;
   final String lieu;
@@ -13,4 +13,4 @@ class Evenement {
       required this.date,
       required this.name,
       required this.email});
-}
+}*/
