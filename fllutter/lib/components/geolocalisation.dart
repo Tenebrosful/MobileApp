@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fllutter/components/creation.dart';
-import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fllutter/src/owner_participants.dart' as eventOwnerParticipant;
 
 class Geolocalisation extends StatefulWidget {
-  Geolocalisation(this.token);
-
-  factory Geolocalisation.fromBase64(String token) => Geolocalisation(token);
-
-  final String token;
-
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -19,7 +13,12 @@ class _MyAppState extends State<Geolocalisation> {
   final Map<String, Marker> _markers = {};
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final events = await eventOwnerParticipant.fetchOwnerParticipant();
+    final storage = FlutterSecureStorage();
+    final token = await storage.read(key: "token");
+    final id = await storage.read(key: "id");
+
+    final events = await eventOwnerParticipant.fetchOwnerParticipant(
+        token.toString(), id.toString());
 
     setState(() {
       _markers.clear();
@@ -47,7 +46,7 @@ class _MyAppState extends State<Geolocalisation> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Google Office Locations'),
-          backgroundColor: Colors.green[700],
+          backgroundColor: Colors.blue[600],
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
