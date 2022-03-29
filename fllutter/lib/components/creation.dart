@@ -5,6 +5,7 @@ import 'package:fllutter/src/events.dart';
 import 'package:flutter/material.dart';
 import 'package:fllutter/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 const kGoogleApiKey = "AIzaSyB7noULujCymE-32A5auy10hE1060P-zSw";
 
@@ -94,6 +95,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String? adresse;
   double? latitude;
   double? longitude;
+  String? token;
+  String? owner_id;
 
   void onError(PlacesAutocompleteResponse response) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -125,6 +128,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   Future<void> displayPrediction(Prediction? p, BuildContext context) async {
     if (p != null) {
+      final storage = FlutterSecureStorage();
+      token = await storage.read(key: "token");
+      owner_id = await storage.read(key: "id");
       // get detail (lat/lng)
       GoogleMapsPlaces _places = GoogleMapsPlaces(
         apiKey: kGoogleApiKey,
@@ -215,18 +221,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  print(adresse);
-                  print(latitude);
-                  print(longitude);
+                  print(adresse.toString());
                   futureEvents = events.createEvent(
-                    titre.text.toString(),
-                    _dateTime.toString(),
-                    //lieu.text.toString(),
-                    adresse.toString(),
-                    desc.text.toString(),
-                    latitude!,
-                    longitude!,
-                  ) as Future<Event>?;
+                      titre.text.toString(),
+                      _dateTime.toString(),
+                      //lieu.text.toString(),
+                      adresse!,
+                      desc.text.toString(),
+                      latitude!,
+                      longitude!,
+                      token.toString(),
+                      owner_id.toString()) as Future<Event>?;
                 }
               },
               child: const Text('Valider'),
