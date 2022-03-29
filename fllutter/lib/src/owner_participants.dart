@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 part 'owner_participants.op.dart';
 
 @JsonSerializable()
@@ -105,13 +106,14 @@ class Events {
   final int count;
 }
 
-Future<Events> fetchOwnerParticipant() async {
-  final response = await http.get(Uri.parse(
-      'http://docketu.iutnc.univ-lorraine.fr:62460/api/event?participants=true&embedOwner=true'));
+Future<Events> fetchOwnerParticipant(String token, String id) async {
+  final response = await http.get(
+      Uri.parse(
+          'http://docketu.iutnc.univ-lorraine.fr:62461/api/user/${id}/joined-event?embedOwner=true&participants=true'),
+      headers: <String, String>{'authorization': token});
 
   if (response.statusCode == 200) {
     var res = json.decode(response.body);
-
     return Events.fromJson(res);
   } else {
     throw Exception('Failed to load event');
