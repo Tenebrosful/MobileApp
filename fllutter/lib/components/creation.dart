@@ -1,6 +1,5 @@
 import 'package:fllutter/src/events.dart' as events;
 import 'package:fllutter/components/geolocalisation.dart';
-import 'package:fllutter/components/profil.dart';
 import 'package:fllutter/src/events.dart';
 import 'package:flutter/material.dart';
 import 'package:fllutter/flutter_google_places.dart';
