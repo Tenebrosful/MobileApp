@@ -1,23 +1,12 @@
 import 'package:fllutter/components/commentaires.dart';
 import 'package:fllutter/components/geolocalisation.dart';
 import 'package:fllutter/components/one_event.dart';
-import 'package:fllutter/model/even.dart';
 import 'package:flutter/material.dart';
-import 'components/sign_in.dart';
-import 'components/sign_up.dart';
+import 'package:fllutter/components/sign_in.dart' as connection;
 import 'components/profil.dart';
 import 'components/creation.dart';
-import 'components/profile_page.dart';
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:fllutter/data/user_preferences.dart';
-import 'package:fllutter/model/user.dart';
-import 'package:fllutter/themes.dart';
-import 'package:flutter/services.dart';
 import 'service/service_user.dart';
-import 'service/service_event.dart';
 import 'service/service_participant.dart';
-import 'service/service_comment.dart';
 import 'service/service_auth.dart';
 
 void main() {
@@ -35,12 +24,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Connexion(),
+      home: connection.Connection(),
       // When navigating to the "/" route, build the SignIn widget.
       initialRoute: '/',
       routes: {
         // When navigating to the "/connexion" route, build the SignIn widget.
-        '/connexion': (context) => Connexion(),
+        '/connexion': (context) => connection.Connection(),
         // When navigating to the "/profil" route, build the Profil widget.
         '/profil': (context) => Profil(),
         // When navigating to the "/ajout" route, build the AddEven widget.
@@ -48,7 +37,7 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/users" route, build the Service_user widget.
         '/users': (context) => Service_user(),
         // When navigating to the "/events" route, build the Service_event widget.
-        //'/events': (context) => Service_event(),
+        '/geolocalisation': (context) => Geolocalisation(),
         // When navigating to the "/participants" route, build the Service_participant widget.
         '/participants': (context) => Service_participant(),
         // When navigating to the "/evenement" route, build the OneEvent widget.
@@ -61,6 +50,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
 
 /*
