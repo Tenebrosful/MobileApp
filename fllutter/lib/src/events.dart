@@ -14,7 +14,7 @@ class LatLng {
 
   factory LatLng.fromJson(Map<String, dynamic> json) => _$LatLngFromJson(json);
   Map<String, dynamic> toJson() => _$LatLngToJson(this);
-  final String address;
+  final String? address;
   final double lat;
   final double long;
 }
@@ -61,6 +61,7 @@ class Events {
   final int count;
 }
 
+/*
 Future<Events> fetchEvent() async {
   final response = await http
       .get(Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62460/api/event'));
@@ -73,21 +74,16 @@ Future<Events> fetchEvent() async {
     throw Exception('Failed to load event');
   }
 }
-
-Future<Event> createEvent(
-  String? title,
-  String date,
-  String address,
-  String desc,
-  double lat,
-  double long,
-) async {
+*/
+Future<Event> createEvent(String? title, String date, String address,
+    String desc, double lat, double long, String token, String owner_id) async {
   var uuid = Uuid();
   final response = await http.post(
-    Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62460/api/event'),
+    Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62461/api/event'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       "Access-Control-Allow-Origin": "*",
+      'authorization': token,
       "user-agent":
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36"
     },
@@ -96,7 +92,7 @@ Future<Event> createEvent(
       "date": date,
       "title": title,
       "description": desc,
-      "owner_id": "229c881a-ae8d-447b-8af8-aff29fde7a17",
+      "owner_id": owner_id,
       "coords": {"address": address, "lat": lat, "long": long}
     }),
   );
@@ -106,6 +102,8 @@ Future<Event> createEvent(
 
     return Event.fromJson(res);
   } else {
+    print(response.body);
+    print(address);
     throw Exception('Failed to create event');
   }
 }
