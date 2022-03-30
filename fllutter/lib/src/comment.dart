@@ -48,6 +48,6 @@ Future<CommentSansAuthor> addComment(
     return CommentSansAuthor.fromJson(res);
   } else {
     print(response.body);
-    throw Exception('Failed to create event');
+    throw Exception('Failed to add comment');
   }
 }
