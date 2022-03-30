@@ -6,6 +6,7 @@ import 'package:fllutter/components/geolocalisation_self_event.dart';
 import 'package:fllutter/components/one_event_joined_event.dart';
 import 'package:fllutter/components/one_event_self_event.dart';
 import 'package:fllutter/components/profile_page.dart';
+import 'package:fllutter/components/edit_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fllutter/components/sign_in.dart' as connection;
 
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/evemenent_participe/commentaires" route, build the CommentairesJoinedEvent widget.
         '/evemenent_participe/commentaires': (context) =>
             CommentairesJoinedEvent(),
+        // When navigating to the "/profil_edit" route, build the EditProfilePage widget.
+        '/profil_edit': (context) => EditProfilePage(),
       },
     );
   }
