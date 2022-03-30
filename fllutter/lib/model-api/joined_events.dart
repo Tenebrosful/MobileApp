@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-part 'owner_participants.op.dart';
+part 'joined_events.j.dart';
 
 @JsonSerializable()
 class LatLng {

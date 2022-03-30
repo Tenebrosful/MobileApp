@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:json_annotation/json_annotation.dart';
-part 'self_event.e.dart';
+part 'self_events.e.dart';
 
 @JsonSerializable()
 class LatLng {
