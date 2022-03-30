@@ -19,27 +19,14 @@ class ProfilePageState extends State<ProfilePage> {
   String? owner_id;
   final storage = FlutterSecureStorage();
 
-  Future<void> getToken() async {
-    token = await storage.read(key: "token");
-  }
+  Future<User> getUsers() {
+    Future<User> getUser() async {
+      owner_id = await storage.read(key: "id");
+      token = await storage.read(key: "token");
+      return user.fetchUser(owner_id.toString(), token.toString());
+    }
 
-  Future<void> getUser() async {
-    owner_id = await storage.read(key: "id");
-  }
-
-  @override
-  void initState() {
-    getUser().then((owner_id) {
-      setState(() {
-        owner_id = owner_id;
-      });
-    });
-    getToken().then((token) {
-      setState(() {
-        token = token;
-      });
-    });
-    super.initState();
+    return getUser();
   }
 
   @override
@@ -50,20 +37,14 @@ class ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.blue[600],
       ),
       body: FutureBuilder<user.User>(
-        future: user.fetchUser(owner_id.toString(), token.toString()),
+        future: getUsers(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var user = snapshot.data!;
             return ThemeProvider(
               initTheme: isDarkMode ? MyThemes.darkTheme : MyThemes.lightTheme,
               builder: (context, myTheme) {
-                return /*MaterialApp(
-                  title: _title,
-                  theme: myTheme,
-                  home: ThemeSwitchingArea(
-                    child: Builder(
-                      builder: (context) => */
-                    Scaffold(
+                return Scaffold(
                   body: ListView(
                     physics: BouncingScrollPhysics(),
                     children: [
@@ -71,12 +52,8 @@ class ProfilePageState extends State<ProfilePage> {
                       ProfileWidget(
                         imagePath:
                             "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80",
-                        onClicked: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => EditProfilePage()),
-                          );
-                        },
+                        onClicked: () =>
+                            {Navigator.pushNamed(context, '/profil_edit')},
                       ),
                       const SizedBox(height: 24),
                       buildName(user),
