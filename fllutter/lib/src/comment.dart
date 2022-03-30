@@ -44,10 +44,8 @@ Future<CommentSansAuthor> addComment(
 
   if (response.statusCode == 201) {
     var res = json.decode(response.body);
-    print(response.body);
     return CommentSansAuthor.fromJson(res);
   } else {
-    print(response.body);
     throw Exception('Failed to add comment');
   }
 }
