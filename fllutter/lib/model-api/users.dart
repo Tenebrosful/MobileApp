@@ -74,3 +74,26 @@ Future<User> fetchUser(String id, String token) async {
     throw Exception('Failed to load user');
   }
 }
+
+Future<void> patchUser(
+    String id, String token, String mail, String username) async {
+  final response = await http.patch(
+    Uri.parse('http://docketu.iutnc.univ-lorraine.fr:62461/api/user/' + id),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      "Access-Control-Allow-Origin": "*",
+      'authorization': token,
+      "user-agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.83 Safari/537.36"
+    },
+    body: jsonEncode(
+        <String, dynamic>{"default_mail": mail, "username": username}),
+  );
+
+  if (response.statusCode == 204) {
+  } else {
+    print(response.body);
+
+    throw Exception('Failed to patch user');
+  }
+}

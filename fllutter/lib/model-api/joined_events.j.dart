@@ -5,25 +5,25 @@ part of 'joined_events.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LatLng _$LatLngFromJson(Map<String, dynamic> json) => LatLng(
+LatLng _$LatLngFromJson(Map<String?, dynamic> json) => LatLng(
       address: json['address'],
       lat: (json['lat'] as num).toDouble(),
       long: (json['long'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$LatLngToJson(LatLng instance) => <String, dynamic>{
+Map<String?, dynamic> _$LatLngToJson(LatLng instance) => <String?, dynamic>{
       'address': instance.address,
       'lat': instance.lat,
       'long': instance.long,
     };
 
-Owner _$OwnerFromJson(Map<String, dynamic> json) => Owner(
+Owner _$OwnerFromJson(Map<String?, dynamic> json) => Owner(
     username: json['username'],
     id: json['id'],
     updatedAt: json['updatedAt'],
     createdAt: json['createdAt']);
 
-Map<String, dynamic> _$OwnerToJson(Owner instance) => <String, dynamic>{
+Map<String?, dynamic> _$OwnerToJson(Owner instance) => <String?, dynamic>{
       'username': instance.username,
       'id': instance.id,
       'updatedAt': instance.updatedAt,
@@ -31,7 +31,7 @@ Map<String, dynamic> _$OwnerToJson(Owner instance) => <String, dynamic>{
     };
 
 Event _$EventFromJson(Map<String?, dynamic> json) => Event(
-    coords: LatLng.fromJson(json['coords'] as Map<String, dynamic>),
+    coords: LatLng.fromJson(json['coords'] as Map<String?, dynamic>),
     createdAt: json['createdAt'],
     date: json['date'],
     description: json['description'],
@@ -45,7 +45,7 @@ Event _$EventFromJson(Map<String?, dynamic> json) => Event(
         .toList(),
     comingParticipant: json['comingParticipant'],
     totalParticipant: json['totalParticipant'],
-    owner: Owner.fromJson(json['owner'] as Map<String, dynamic>));
+    owner: Owner.fromJson(json['owner'] as Map<String?, dynamic>));
 
 Map<String?, dynamic> _$EventToJson(Event instance) => <String?, dynamic>{
       'coords': instance.coords,

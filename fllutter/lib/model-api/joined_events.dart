@@ -12,9 +12,9 @@ class LatLng {
     required this.long,
   });
 
-  factory LatLng.fromJson(Map<String, dynamic> json) => _$LatLngFromJson(json);
-  Map<String, dynamic> toJson() => _$LatLngToJson(this);
-  final String address;
+  factory LatLng.fromJson(Map<String?, dynamic> json) => _$LatLngFromJson(json);
+  Map<String?, dynamic> toJson() => _$LatLngToJson(this);
+  final String? address;
   final double lat;
   final double long;
 }
@@ -49,12 +49,12 @@ class Owner {
     required this.createdAt,
   });
 
-  factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
-  Map<String, dynamic> toJson() => _$OwnerToJson(this);
-  final String username;
-  final String id;
-  final String updatedAt;
-  final String createdAt;
+  factory Owner.fromJson(Map<String?, dynamic> json) => _$OwnerFromJson(json);
+  Map<String?, dynamic> toJson() => _$OwnerToJson(this);
+  final String? username;
+  final String? id;
+  final String? updatedAt;
+  final String? createdAt;
 }
 
 @JsonSerializable()
