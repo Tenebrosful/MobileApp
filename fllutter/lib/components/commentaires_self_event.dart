@@ -4,15 +4,20 @@ import 'package:fllutter/model-api/comments.dart' as comments;
 import 'package:fllutter/model-api/comment.dart' as comment;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class CommentairesSelfEvent extends StatelessWidget {
+class CommentairesSelfEvent extends StatefulWidget {
+  @override
+  State<CommentairesSelfEvent> createState() => CommentairesSelfEventState();
+}
+
+class CommentairesSelfEventState extends State<CommentairesSelfEvent> {
   String? token;
 
   @override
   Widget build(BuildContext context) {
     final storage = FlutterSecureStorage();
     final events = ModalRoute.of(context)!.settings.arguments as Event;
-    final Future<comments.Comments> commentaires =
-        comments.fetchComments(token.toString(), events.id!);
+    Future<comments.Comments> commentaires;
+    commentaires = comments.fetchComments(token.toString(), events.id!);
 
     Future<void> _displayDialog() async {
       TextEditingController commentaire = TextEditingController();
@@ -34,8 +39,11 @@ class CommentairesSelfEvent extends StatelessWidget {
                 onPressed: () async {
                   await comment.addComment(token.toString(), events.id!,
                       commentaire.text.toString());
-
                   Navigator.pop(context);
+                  setState(() {
+                    commentaires =
+                        comments.fetchComments(token.toString(), events.id!);
+                  });
                 },
               ),
             ],
