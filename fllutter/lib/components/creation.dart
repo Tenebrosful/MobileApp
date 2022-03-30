@@ -1,5 +1,4 @@
 import 'package:fllutter/src/events.dart' as events;
-import 'package:fllutter/components/geolocalisation.dart';
 import 'package:fllutter/src/events.dart';
 import 'package:flutter/material.dart';
 import 'package:fllutter/flutter_google_places.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 const kGoogleApiKey = "AIzaSyB7noULujCymE-32A5auy10hE1060P-zSw";
 
 class AddEven extends StatelessWidget {
-  static const String _title = 'Ajout événement';
+  static const String _title = 'Créer un événement';
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class AddEven extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: const Text('Home'),
+              title: const Text('Accueil'),
               leading: IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
@@ -59,7 +58,34 @@ class AddEven extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('Create'),
+              title: const Text('Mes événements'),
+              leading: IconButton(
+                icon: Icon(Icons.calendar_today),
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/geolocalisation/mes_evenements');
+                },
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/geolocalisation/mes_evenements');
+              },
+            ),
+            ListTile(
+              title: const Text('Événements participés'),
+              leading: IconButton(
+                icon: Icon(Icons.calendar_today),
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/geolocalisation/evenements_participes');
+                },
+              ),
+              onTap: () {
+                Navigator.pushNamed(
+                    context, '/geolocalisation/evenements_participes');
+              },
+            ),
+            ListTile(
+              title: const Text('Créer un événement'),
               leading: IconButton(
                 icon: Icon(Icons.create),
                 onPressed: () {
