@@ -1,7 +1,7 @@
-import 'package:fllutter/src/owner_participants.dart';
+import 'package:fllutter/model-api/joined_events.dart';
 import 'package:flutter/material.dart';
-import 'package:fllutter/src/comments.dart' as comments;
-import 'package:fllutter/src/comment.dart' as comment;
+import 'package:fllutter/model-api/comments.dart' as comments;
+import 'package:fllutter/model-api/comment.dart' as comment;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CommentairesJoinedEvent extends StatelessWidget {

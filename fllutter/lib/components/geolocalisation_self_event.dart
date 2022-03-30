@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fllutter/components/creation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fllutter/src/self_event.dart' as selfEvent;
+import 'package:fllutter/model-api/self_events.dart' as selfEvent;
 
 class GeolocalisationSelfEvent extends StatefulWidget {
   @override

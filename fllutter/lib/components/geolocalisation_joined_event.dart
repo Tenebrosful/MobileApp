@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:fllutter/components/creation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fllutter/src/owner_participants.dart' as joinedEvent;
+import 'package:fllutter/model-api/joined_events.dart' as joinedEvent;
 
 class GeolocalisationJoinedEvent extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
-import 'package:fllutter/src/events.dart' as events;
-import 'package:fllutter/src/events.dart';
+import 'package:fllutter/model-api/events.dart' as events;
+import 'package:fllutter/model-api/events.dart';
 import 'package:flutter/material.dart';
 import 'package:fllutter/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fllutter/src/auth.dart';
+import 'package:fllutter/model-api/auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Connection extends StatefulWidget {

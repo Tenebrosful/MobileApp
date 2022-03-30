@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:fllutter/data/user_preferences.dart';
 import 'package:fllutter/components/appbar_widget.dart';
 import 'package:fllutter/components/profile_widget.dart';

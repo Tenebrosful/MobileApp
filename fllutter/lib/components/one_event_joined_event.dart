@@ -1,7 +1,7 @@
-import 'package:fllutter/src/owner_participants.dart';
+import 'package:fllutter/model-api/joined_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:fllutter/src/join_event.dart' as join;
+import 'package:fllutter/model-api/join_event.dart' as join;
 
 class OneEventJoinedEvent extends StatelessWidget {
   String? token;

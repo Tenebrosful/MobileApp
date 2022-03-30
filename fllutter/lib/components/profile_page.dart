@@ -1,12 +1,10 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:fllutter/components/geolocalisation_self_event.dart';
 import 'package:flutter/material.dart';
-import 'package:fllutter/components/appbar_widget.dart';
 import 'package:fllutter/components/profile_widget.dart';
 import 'package:fllutter/components/edit_profile_page.dart';
 import 'package:fllutter/themes.dart';
-import 'package:fllutter/src/users.dart';
-import 'package:fllutter/src/users.dart' as user;
+import 'package:fllutter/model-api/users.dart';
+import 'package:fllutter/model-api/users.dart' as user;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ProfilePage extends StatefulWidget {
