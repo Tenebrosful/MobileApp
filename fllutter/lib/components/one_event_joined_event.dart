@@ -147,7 +147,7 @@ class OneEventJoinedEvent extends StatelessWidget {
                     primary: Colors.indigo, fixedSize: Size.fromWidth(300)),
                 onPressed: () {
                   Navigator.pushNamed(
-                      context, '/evenement_participe/commentaires',
+                      context, '/evemenent_participe/commentaires',
                       arguments: event);
                 },
                 child: ListTile(
