@@ -4,11 +4,27 @@ import 'package:fllutter/model-api/flutter_google_places.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fllutter/model-api/users.dart';
+import 'package:fllutter/model-api/users.dart' as user;
 
 const kGoogleApiKey = "AIzaSyB7noULujCymE-32A5auy10hE1060P-zSw";
 
 class AddEven extends StatelessWidget {
   static const String _title = 'Créer un événement';
+
+  String? token;
+  String? owner_id;
+  final storage = FlutterSecureStorage();
+
+  Future<User> getUsers() {
+    Future<User> getUser() async {
+      owner_id = await storage.read(key: "id");
+      token = await storage.read(key: "token");
+      return user.fetchUser(owner_id.toString(), token.toString());
+    }
+
+    return getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,87 +33,97 @@ class AddEven extends StatelessWidget {
       body: const Center(
         child: MyStatefulWidget(),
       ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.indigo,
+      drawer: FutureBuilder<user.User>(
+        future: getUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var user = snapshot.data!;
+            return Drawer(
+              child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: [
+                  UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Colors.indigo,
+                    ),
+                    accountName: Text(user.username.toString()),
+                    accountEmail: Text(user.default_event_mail.toString()),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Text(user.username.toString()),
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text('Profil'),
+                    leading: IconButton(
+                      icon: Icon(Icons.person),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/profil');
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/profil');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Créer un événement'),
+                    leading: IconButton(
+                      icon: Icon(Icons.create),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/ajout');
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/ajout');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Mes événements'),
+                    leading: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/geolocalisation/mes_evenements');
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, '/geolocalisation/mes_evenements');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Événements participés'),
+                    leading: IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/geolocalisation/evenements_participes');
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, '/geolocalisation/evenements_participes');
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Déconnexion'),
+                    leading: IconButton(
+                      icon: Icon(Icons.logout),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/');
+                      },
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                  ),
+                ],
               ),
-              accountName: Text("Nilesh Rathod"),
-              accountEmail: Text("nilesh@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text("Nilu"),
-              ),
-            ),
-            ListTile(
-              title: const Text('Accueil'),
-              leading: IconButton(
-                icon: Icon(Icons.home),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/');
-                },
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-            ListTile(
-              title: const Text('Profil'),
-              leading: IconButton(
-                icon: Icon(Icons.person),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/profil');
-                },
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/profil');
-              },
-            ),
-            ListTile(
-              title: const Text('Mes événements'),
-              leading: IconButton(
-                icon: Icon(Icons.calendar_today),
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/geolocalisation/mes_evenements');
-                },
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/geolocalisation/mes_evenements');
-              },
-            ),
-            ListTile(
-              title: const Text('Événements participés'),
-              leading: IconButton(
-                icon: Icon(Icons.calendar_today),
-                onPressed: () {
-                  Navigator.pushNamed(
-                      context, '/geolocalisation/evenements_participes');
-                },
-              ),
-              onTap: () {
-                Navigator.pushNamed(
-                    context, '/geolocalisation/evenements_participes');
-              },
-            ),
-            ListTile(
-              title: const Text('Créer un événement'),
-              leading: IconButton(
-                icon: Icon(Icons.create),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/ajout');
-                },
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, '/ajout');
-              },
-            ),
-          ],
-        ),
+            );
+          }
+          return const CircularProgressIndicator();
+        },
       ),
     );
   }
