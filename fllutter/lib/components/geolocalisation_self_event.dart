@@ -46,7 +46,7 @@ class _GeolocalisationSelfEventState extends State<GeolocalisationSelfEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Geolocalisation - Mes événements'),
+        title: const Text('Mes événements'),
         backgroundColor: Colors.blue[600],
       ),
       body: GoogleMap(

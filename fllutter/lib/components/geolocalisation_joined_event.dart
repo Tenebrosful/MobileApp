@@ -47,7 +47,7 @@ class _GeolocalisationJoinedEventState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Geolocalisation - Événements participés'),
+        title: const Text('Événements participés'),
         backgroundColor: Colors.blue[600],
       ),
       body: GoogleMap(
