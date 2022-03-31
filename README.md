@@ -51,5 +51,5 @@
   - Vous pourriez profiter l'application
 
 - Démonstration
-[![Watch the video](./Reunionou.mp4)](./Reunionou.mp4)
+*[vidéo mobile](https://drive.google.com/file/d/1RXyijAfnw_xnd7IrImSx0qPFF-GdhD-W/view?usp=sharing)*
 
