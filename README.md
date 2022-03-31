@@ -49,3 +49,10 @@
   - Tapez `flutter run`
   - Vérifiez leur identité à l'aide de l'app Apple Developer
   - Vous pourriez profiter l'application
+
+- Démonstration
+<video controls>
+  <source src="Reunionou.mp4" type="video/mp4">
+  <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
+     Voici <a href="Reunionou.mp4">un lien pour télécharger la vidéo</a>.</p>
+</video>
