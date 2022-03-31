@@ -2,7 +2,9 @@ import 'package:fllutter/model-api/event_participants.dart' as participants;
 import 'package:fllutter/model-api/self_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:fllutter/model-api/search_user.dart' as searchs;
 import 'package:fllutter/model-api/join_event.dart' as join;
+import 'package:fllutter/model-api/invite.dart' as invites;
 
 class OneEventSelfEvent extends StatefulWidget {
   const OneEventSelfEvent({Key? key}) : super(key: key);
@@ -17,10 +19,14 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
   String? owner_id;
   final storage = FlutterSecureStorage();
   late final Future<participants.Participants> participants_data;
+  late final Future<searchs.Search_users> search_data;
+  late final Future<void> invite_partcipant;
 
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments as Event;
+
+    TextEditingController query = TextEditingController();
 
     Future<participants.Participants> getParticipants() async {
       owner_id = await storage.read(key: "id");
@@ -29,7 +35,22 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
       return participants.fetchEventParticipants(token.toString(), event.id!);
     }
 
+    Future<searchs.Search_users> getSearch(String? req) async {
+      token = await storage.read(key: "token");
+      return searchs.fetchSearchUser(req.toString(), token.toString());
+    }
+
+    Future<void> inviteParticipant() async {
+      token = await storage.read(key: "token");
+    }
+
     participants_data = getParticipants();
+
+    Future<void> _displayDialog() async {
+      TextEditingController commentaire = TextEditingController();
+      token = await storage.read(key: "token");
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text(event.title.toString()),
@@ -205,6 +226,64 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
                       },
                     ),
                   ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                color: Colors.orange[100],
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Remplissez ce champ';
+                        }
+                      },
+                      controller: query,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Nom d'utilisateur",
+                        hintText: "Ex: user / u",
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        var search_user = await searchs.fetchSearchUser(
+                            query.text.toString(), token.toString());
+
+                        showDialog<void>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return ListView.builder(
+                              itemCount: search_user.users.length,
+                              itemBuilder: (context, index) {
+                                var user = search_user.users[index];
+                                return AlertDialog(
+                                  content: ListTile(
+                                      title: Text(user.username.toString())),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('Inviter'),
+                                      onPressed: () async {
+                                        await invites.inviteParticipant(
+                                            token.toString(),
+                                            event.id!,
+                                            user.id.toString());
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: const Text("Chercher utilisateur"),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 30),

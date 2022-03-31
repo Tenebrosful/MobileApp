@@ -206,8 +206,50 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_native_splash",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_native_splash-2.1.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage-5.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_linux-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_macos",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_macos-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_platform_interface",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_platform_interface-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_web",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_web-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_secure_storage_windows-1.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -548,6 +590,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "universal_io",
+      "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/universal_io-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "uuid",
       "rootUri": "file:///Users/wangziyihuifei/development/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.6",
       "packageUri": "lib/",
@@ -596,7 +644,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2022-03-25T08:35:55.883555Z",
+  "generated": "2022-03-31T15:36:56.297400Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }
