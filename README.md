@@ -26,3 +26,30 @@
   - Connexion avec authentification `Dart, http, JWT, flutter_secure_storage`
   - Stockage des données (token, id, username) `Dart, flutter_secure_storage`
   - Partager un événement `Dart, http, flutter_secure_storage`
+
+## Installation (ios)
+- Service ios simulator
+  - Vous devriez connecter wifi `eduroam` ou `vpn.lothaire.net`
+  - Dans le répertoire `Reunionou-MobileApp/fllutter/ios` tapez `flutter pub set`
+  - Dans le même répertoire tapez `pod install`
+  - Changez dans le répertoire `Reunionou-MobileApp/fllutter`
+  - Tapez `flutter clean`
+  - Tapez `flutter pub set`
+  - Vous pouvez lancer service ios simulator
+  - Vous pourriez profiter l'application
+
+- Service votre portable
+  - Vous devriez connecter wifi `eduroam` ou `vpn.lothaire.net`
+  - Dans le répertoire `Reunionou-MobileApp/fllutter/ios` tapez `flutter pub set`
+  - Dans le même répertoire tapez `pod install`
+  - Changez dans le répertoire `Reunionou-MobileApp/fllutter`
+  - Tapez `flutter clean`
+  - Tapez `flutter pub set`
+  - Configurez team dans Xcode avec votre Apple ID
+  - Tapez `flutter run`
+  - Vérifiez leur identité à l'aide de l'app Apple Developer
+  - Vous pourriez profiter l'application
+
+- Démonstration
+[![Watch the video](./Reunionou.mp4)](./Reunionou.mp4)
+
