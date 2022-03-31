@@ -51,8 +51,5 @@
   - Vous pourriez profiter l'application
 
 - Démonstration
-<video controls>
-  <source src="Reunionou.mp4" type="video/mp4">
-  <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
-     Voici <a href="Reunionou.mp4">un lien pour télécharger la vidéo</a>.</p>
-</video>
+[![Watch the video](./fllutter/assets/images/logo.png)](./Reunionou.mp4)
+
