@@ -25,6 +25,7 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
   @override
   Widget build(BuildContext context) {
     final event = ModalRoute.of(context)!.settings.arguments as Event;
+
     TextEditingController query = TextEditingController();
 
     Future<participants.Participants> getParticipants() async {
@@ -44,6 +45,11 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
     }
 
     participants_data = getParticipants();
+
+    Future<void> _displayDialog() async {
+      TextEditingController commentaire = TextEditingController();
+      token = await storage.read(key: "token");
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -245,12 +251,35 @@ class OneEventSelfEventState extends State<OneEventSelfEvent> {
                       onPressed: () async {
                         var search_user = await searchs.fetchSearchUser(
                             query.text.toString(), token.toString());
-                        //print(token.toString());
-                        //print(query.text.toString());
-                        /*search_user.users.map((user) => {
-                              print(user),
-                            });*/
-                        print(search_user.users[0].username);
+
+                        showDialog<void>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return ListView.builder(
+                              itemCount: search_user.users.length,
+                              itemBuilder: (context, index) {
+                                var user = search_user.users[index];
+                                return AlertDialog(
+                                  content: ListTile(
+                                      title: Text(user.username.toString())),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('Inviter'),
+                                      onPressed: () async {
+                                        await invites.inviteParticipant(
+                                            token.toString(),
+                                            event.id!,
+                                            user.id.toString());
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        );
                       },
                       child: const Text("Chercher utilisateur"),
                     ),
