@@ -51,5 +51,5 @@
   - Vous pourriez profiter l'application
 
 - Démonstration
-[![Watch the video](./fllutter/assets/images/logo.png)](./Reunionou.mp4)
+[![Watch the video](./Reunionou.mp4)](./Reunionou.mp4)
 
